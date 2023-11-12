@@ -1,6 +1,16 @@
 #include <Keypad.h>
+#include <LiquidCrystal.h>
 //#include <MIDI.h>
 //MIDI_CREATE_DEFAULT_INSTANCE();
+
+int D7_pin = A4;
+int D6_pin = A3;
+int D5_pin = A2;
+int D4_pin = A1;
+int EN_pin = A0;
+int RS_pin = 12;
+
+LiquidCrystal lcd(RS_pin, EN_pin, D4_pin, D5_pin, D6_pin, D7_pin);
  
 const byte rowsCount = 4;
 const byte columsCount = 4;
@@ -19,11 +29,16 @@ Keypad kpd = Keypad(makeKeymap(keys), rowPins, columnPins, rowsCount, columsCoun
 int kpc = 144;
 int midC = 60;
 int transpose = 0;
+int noteDisplay = 0;
+int octaveDisplay = 5;
+char dataReceived = ' ';
 
 void setup() {
   // put your setup code here, to run once:
   //MIDI.begin(MIDI_CHANNEL_OMNI);
   Serial.begin(9600);
+  lcd.begin(16, 2);
+  printState();
 }
 
 void loop() {
@@ -144,7 +159,23 @@ void loop() {
       }
     }
   }
-
+  if (Serial.available() != 0){
+    dataReceived = Serial.read();
+    switch(dataReceived){
+      case 't':
+        transponer(-1);
+        break;
+      case 'T':
+        transponer(1);
+        break;
+      case 'o':
+        transponer(-12);
+        break;
+      case 'O':
+        transponer(12);
+        break;
+    }
+  }
 }
 
 void MIDImessage(byte status, byte data1, byte data2)
@@ -152,4 +183,65 @@ void MIDImessage(byte status, byte data1, byte data2)
   Serial.write(status);
   Serial.write(data1);
   Serial.write(data2);
+}
+
+void printState(){
+  lcd.clear();
+  switch(noteDisplay){
+    case 0:
+      lcd.print("C / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 1:
+      lcd.print("C# / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 2:
+      lcd.print("D / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 3:
+      lcd.print("D# / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 4:
+      lcd.print("E / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 5:
+      lcd.print("F / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 6:
+      lcd.print("F# / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 7:
+      lcd.print("G / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 8:
+      lcd.print("G# / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 9:
+      lcd.print("A / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 10:
+      lcd.print("A# / ");
+      lcd.print(octaveDisplay);
+      break;
+    case 11:
+      lcd.print("B / ");
+      lcd.print(octaveDisplay);
+      break;
+  }
+}
+
+void transponer(int nNotas){
+  transpose += nNotas;
+  noteDisplay = (midC + transpose)%12;
+  octaveDisplay = (midC + transpose)/12;
+  printState();
 }
