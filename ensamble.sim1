@@ -1,4 +1,4 @@
-<circuit version="1.0.0-SR1" rev="1402" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+<circuit version="1.0.0-SR1" rev="1402" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="1" >
 
 <item itemtype="Subcircuit" CircId="Uno-4" mainComp="false" Show_id="true" Show_Val="false" Pos="556,436" rotation="0" hflip="1" vflip="1" label="Uno-4" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="true">
 <mainCompProps itemtype="MCU" CircId="4_mega328-109" mainComp="true" Show_id="false" Show_Val="false" Pos="20,20" rotation="0" hflip="1" vflip="1" label="4_mega328-109" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="Firmware/firmware_MIDI/build/arduino.avr.uno/firmware_MIDI.ino.hex" Auto_Load="false" Rst_enabled="true" Ext_Osc="true" Wdt_enabled="false" />
@@ -7,6 +7,8 @@
 <item itemtype="KeyPad" CircId="KeyPad-5" mainComp="false" ShowProp="Rows" Show_id="false" Show_Val="true" Pos="812,416" rotation="0" hflip="1" vflip="1" label="KeyPad-5" idLabPos="-8,-16" labelrot="0" valLabPos="-16,20" valLabRot="0" Rows="4 _Teclas" Cols="4 _Teclas" Key_Labels="123A456B789C*0#D" />
 
 <item itemtype="Hd44780" CircId="Hd44780-15" mainComp="false" Show_id="true" Show_Val="false" Pos="628,396" rotation="0" hflip="1" vflip="1" label="Hd44780-15" idLabPos="70,-82" labelrot="0" valLabPos="-16,20" valLabRot="0" Rows="2 _Filas" Cols="16 _Columnas" />
+
+<item itemtype="SerialPort" CircId="SerialPort-32" mainComp="false" Show_id="false" Show_Val="false" Pos="760,592" rotation="0" hflip="1" vflip="1" label="SerialPort-32" idLabPos="-20,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Port="COM1" Baudrate="9600 _Bauds" DataBits="8 _Bits" StopBits="1 _Bits" />
 
 <item itemtype="Connector" uid="connector-16" startpinid="KeyPad-5-Pin0" endpinid="Uno-4-11" pointList="876,424,896,424,896,508,612,508" />
 
@@ -24,16 +26,20 @@
 
 <item itemtype="Connector" uid="connector-23" startpinid="KeyPad-5-Pin7" endpinid="Uno-4-4" pointList="860,488,860,564,612,564" />
 
-<item itemtype="Connector" uid="Connector-24" startpinid="Hd44780-15-PinRS" endpinid="Uno-4-12" pointList="644,404,644,500,612,500" />
+<item itemtype="Connector" uid="connector-24" startpinid="Hd44780-15-PinRS" endpinid="Uno-4-12" pointList="644,404,644,500,612,500" />
 
-<item itemtype="Connector" uid="Connector-25" startpinid="Hd44780-15-PinEn" endpinid="Uno-4-A0" pointList="660,404,660,484,612,484" />
+<item itemtype="Connector" uid="connector-25" startpinid="Hd44780-15-PinEn" endpinid="Uno-4-A0" pointList="660,404,660,484,612,484" />
 
-<item itemtype="Connector" uid="Connector-26" startpinid="Hd44780-15-dataPin4" endpinid="Uno-4-A1" pointList="700,404,700,476,612,476" />
+<item itemtype="Connector" uid="connector-26" startpinid="Hd44780-15-dataPin4" endpinid="Uno-4-A1" pointList="700,404,700,476,612,476" />
 
-<item itemtype="Connector" uid="Connector-27" startpinid="Hd44780-15-dataPin5" endpinid="Uno-4-A2" pointList="708,404,708,468,612,468" />
+<item itemtype="Connector" uid="connector-27" startpinid="Hd44780-15-dataPin5" endpinid="Uno-4-A2" pointList="708,404,708,468,612,468" />
 
-<item itemtype="Connector" uid="Connector-28" startpinid="Hd44780-15-dataPin6" endpinid="Uno-4-A3" pointList="716,404,716,460,612,460" />
+<item itemtype="Connector" uid="connector-28" startpinid="Hd44780-15-dataPin6" endpinid="Uno-4-A3" pointList="716,404,716,460,612,460" />
 
-<item itemtype="Connector" uid="Connector-29" startpinid="Hd44780-15-dataPin7" endpinid="Uno-4-A4" pointList="724,404,724,452,612,452" />
+<item itemtype="Connector" uid="connector-29" startpinid="Hd44780-15-dataPin7" endpinid="Uno-4-A4" pointList="724,404,724,452,612,452" />
+
+<item itemtype="Connector" uid="Connector-33" startpinid="SerialPort-32-pin0" endpinid="Uno-4-0" pointList="720,584,612,584,612,596" />
+
+<item itemtype="Connector" uid="Connector-34" startpinid="SerialPort-32-pin1" endpinid="Uno-4-1" pointList="720,600,612,600,612,588" />
 
 </circuit>

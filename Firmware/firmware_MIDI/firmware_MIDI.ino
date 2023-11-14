@@ -161,18 +161,24 @@ void loop() {
   }
   if (Serial.available() != 0){
     dataReceived = Serial.read();
+    Serial.println(dataReceived);
+    delay(1000);
     switch(dataReceived){
       case 't':
         transponer(-1);
+        Serial.println("-1");
         break;
       case 'T':
         transponer(1);
+        Serial.println("1");
         break;
       case 'o':
         transponer(-12);
+        Serial.println("-12");
         break;
       case 'O':
         transponer(12);
+        Serial.println("12");
         break;
     }
   }
